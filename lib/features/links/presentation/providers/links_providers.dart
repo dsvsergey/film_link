@@ -5,6 +5,7 @@ import 'package:film_link/features/links/domain/repositories/links_repository.da
 import 'package:film_link/features/links/domain/usecases/create_link.dart';
 import 'package:film_link/features/links/domain/usecases/delete_link.dart';
 import 'package:film_link/features/links/domain/usecases/get_links.dart';
+import 'package:film_link/features/links/domain/usecases/search_links.dart';
 import 'package:film_link/features/links/domain/usecases/update_link.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -37,4 +38,8 @@ final updateLinkUseCaseProvider = Provider<UpdateLink>((ref) {
 
 final deleteLinkUseCaseProvider = Provider<DeleteLink>((ref) {
   return DeleteLink(ref.watch(linksRepositoryProvider));
+});
+
+final searchLinksUseCaseProvider = Provider<SearchLinks>((ref) {
+  return SearchLinks(ref.watch(linksRepositoryProvider));
 });

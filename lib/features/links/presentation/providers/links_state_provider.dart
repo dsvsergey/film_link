@@ -3,6 +3,7 @@ import 'package:film_link/features/links/domain/entities/link_entity.dart';
 import 'package:film_link/features/links/domain/usecases/create_link.dart';
 import 'package:film_link/features/links/domain/usecases/delete_link.dart';
 import 'package:film_link/features/links/domain/usecases/get_links.dart';
+import 'package:film_link/features/links/domain/usecases/search_links.dart';
 import 'package:film_link/features/links/domain/usecases/update_link.dart';
 import 'package:film_link/features/links/presentation/providers/links_providers.dart';
 import 'package:flutter_riverpod/legacy.dart';
@@ -23,16 +24,19 @@ class LinksStateNotifier extends StateNotifier<LinksState> {
   final CreateLink _createLink;
   final UpdateLink _updateLink;
   final DeleteLink _deleteLink;
+  final SearchLinks _searchLinks;
 
   LinksStateNotifier({
     required GetLinks getLinks,
     required CreateLink createLink,
     required UpdateLink updateLink,
     required DeleteLink deleteLink,
+    required SearchLinks searchLinks,
   }) : _getLinks = getLinks,
        _createLink = createLink,
        _updateLink = updateLink,
        _deleteLink = deleteLink,
+       _searchLinks = searchLinks,
        super(const LinksState.initial());
 
   Future<void> loadLinks() async {
@@ -68,7 +72,7 @@ class LinksStateNotifier extends StateNotifier<LinksState> {
   }
 
   Future<void> updateLink({
-    required String id,
+    required int id,
     String? url,
     String? title,
     String? description,
@@ -92,12 +96,23 @@ class LinksStateNotifier extends StateNotifier<LinksState> {
     );
   }
 
-  Future<void> deleteLink(String id) async {
+  Future<void> deleteLink(int id) async {
     final result = await _deleteLink(DeleteLinkParams(id));
 
     result.fold(
       (failure) => state = LinksState.error(failure.message),
       (_) => loadLinks(),
+    );
+  }
+
+  Future<void> searchLinks(String query) async {
+    state = const LinksState.loading();
+
+    final result = await _searchLinks(query);
+
+    result.fold(
+      (failure) => state = LinksState.error(failure.message),
+      (links) => state = LinksState.loaded(links),
     );
   }
 }
@@ -109,5 +124,6 @@ final linksStateProvider =
         createLink: ref.watch(createLinkUseCaseProvider),
         updateLink: ref.watch(updateLinkUseCaseProvider),
         deleteLink: ref.watch(deleteLinkUseCaseProvider),
+        searchLinks: ref.watch(searchLinksUseCaseProvider),
       );
     });

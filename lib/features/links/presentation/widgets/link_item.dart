@@ -7,10 +7,7 @@ import 'package:url_launcher/url_launcher.dart';
 class LinkItem extends ConsumerWidget {
   final LinkEntity link;
 
-  const LinkItem({
-    super.key,
-    required this.link,
-  });
+  const LinkItem({super.key, required this.link});
 
   Future<void> _openLink() async {
     final uri = Uri.parse(link.url);
@@ -43,10 +40,9 @@ class LinkItem extends ConsumerWidget {
   }
 
   void _archiveLink(WidgetRef ref) {
-    ref.read(linksStateProvider.notifier).updateLink(
-          id: link.id,
-          isArchived: !link.isArchived,
-        );
+    ref
+        .read(linksStateProvider.notifier)
+        .updateLink(id: link.id, isArchived: !link.isArchived);
   }
 
   @override
@@ -67,8 +63,8 @@ class LinkItem extends ConsumerWidget {
                     Text(
                       link.title ?? link.url,
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            fontWeight: FontWeight.w600,
-                          ),
+                        fontWeight: FontWeight.w600,
+                      ),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -79,20 +75,6 @@ class LinkItem extends ConsumerWidget {
                         style: Theme.of(context).textTheme.bodySmall,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
-                      ),
-                    ],
-                    if (link.tags.isNotEmpty) ...[
-                      const SizedBox(height: 8),
-                      Wrap(
-                        spacing: 4,
-                        runSpacing: 4,
-                        children: link.tags.map((tag) {
-                          return Chip(
-                            label: Text(tag),
-                            labelStyle: Theme.of(context).textTheme.labelSmall,
-                            visualDensity: VisualDensity.compact,
-                          );
-                        }).toList(),
                       ),
                     ],
                   ],
