@@ -77,20 +77,6 @@ class LinkItem extends ConsumerWidget {
                         overflow: TextOverflow.ellipsis,
                       ),
                     ],
-                    if (link.tags.isNotEmpty) ...[
-                      const SizedBox(height: 8),
-                      Wrap(
-                        spacing: 4,
-                        runSpacing: 4,
-                        children: link.tags.map((tag) {
-                          return Chip(
-                            label: Text(tag),
-                            labelStyle: Theme.of(context).textTheme.labelSmall,
-                            visualDensity: VisualDensity.compact,
-                          );
-                        }).toList(),
-                      ),
-                    ],
                   ],
                 ),
               ),

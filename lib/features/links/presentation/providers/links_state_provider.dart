@@ -92,7 +92,7 @@ class LinksStateNotifier extends StateNotifier<LinksState> {
     );
   }
 
-  Future<void> deleteLink(String id) async {
+  Future<void> deleteLink(int id) async {
     final result = await _deleteLink(DeleteLinkParams(id));
 
     result.fold(

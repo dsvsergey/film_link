@@ -7,9 +7,9 @@ import 'package:film_link/features/links/domain/repositories/links_repository.da
 /// Use case for deleting a link
 class DeleteLink implements UseCase<void, DeleteLinkParams> {
   final LinksRepository repository;
-  
+
   DeleteLink(this.repository);
-  
+
   @override
   Future<Either<Failure, void>> call(DeleteLinkParams params) async {
     return await repository.deleteLink(params.id);
@@ -17,10 +17,10 @@ class DeleteLink implements UseCase<void, DeleteLinkParams> {
 }
 
 class DeleteLinkParams extends Equatable {
-  final String id;
-  
+  final int id;
+
   const DeleteLinkParams(this.id);
-  
+
   @override
   List<Object?> get props => [id];
 }
