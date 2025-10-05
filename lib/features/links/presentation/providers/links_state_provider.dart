@@ -68,7 +68,7 @@ class LinksStateNotifier extends StateNotifier<LinksState> {
   }
 
   Future<void> updateLink({
-    required String id,
+    required int id,
     String? url,
     String? title,
     String? description,

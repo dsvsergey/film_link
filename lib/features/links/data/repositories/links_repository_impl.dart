@@ -2,15 +2,16 @@ import 'package:dartz/dartz.dart';
 import 'package:film_link/core/error/exceptions.dart';
 import 'package:film_link/core/error/failures.dart';
 import 'package:film_link/features/links/data/datasources/links_remote_data_source.dart';
+import 'package:film_link/features/links/data/models/link_model.dart';
 import 'package:film_link/features/links/domain/entities/link_entity.dart';
 import 'package:film_link/features/links/domain/repositories/links_repository.dart';
 
 /// Implementation of LinksRepository
 class LinksRepositoryImpl implements LinksRepository {
   final LinksRemoteDataSource remoteDataSource;
-  
+
   LinksRepositoryImpl({required this.remoteDataSource});
-  
+
   @override
   Future<Either<Failure, List<LinkEntity>>> getLinks() async {
     try {
@@ -24,7 +25,7 @@ class LinksRepositoryImpl implements LinksRepository {
       return Left(ServerFailure(e.toString()));
     }
   }
-  
+
   @override
   Future<Either<Failure, List<LinkEntity>>> getArchivedLinks() async {
     try {
@@ -38,9 +39,9 @@ class LinksRepositoryImpl implements LinksRepository {
       return Left(ServerFailure(e.toString()));
     }
   }
-  
+
   @override
-  Future<Either<Failure, LinkEntity>> getLinkById(String id) async {
+  Future<Either<Failure, LinkEntity>> getLinkById(int id) async {
     try {
       final link = await remoteDataSource.getLinkById(id);
       return Right(link.toEntity());
@@ -52,7 +53,7 @@ class LinksRepositoryImpl implements LinksRepository {
       return Left(ServerFailure(e.toString()));
     }
   }
-  
+
   @override
   Future<Either<Failure, LinkEntity>> createLink({
     required String url,
@@ -76,10 +77,10 @@ class LinksRepositoryImpl implements LinksRepository {
       return Left(ServerFailure(e.toString()));
     }
   }
-  
+
   @override
   Future<Either<Failure, LinkEntity>> updateLink({
-    required String id,
+    required int id,
     String? url,
     String? title,
     String? description,
@@ -104,9 +105,9 @@ class LinksRepositoryImpl implements LinksRepository {
       return Left(ServerFailure(e.toString()));
     }
   }
-  
+
   @override
-  Future<Either<Failure, void>> deleteLink(String id) async {
+  Future<Either<Failure, void>> deleteLink(int id) async {
     try {
       await remoteDataSource.deleteLink(id);
       return const Right(null);
@@ -118,7 +119,7 @@ class LinksRepositoryImpl implements LinksRepository {
       return Left(ServerFailure(e.toString()));
     }
   }
-  
+
   @override
   Future<Either<Failure, List<LinkEntity>>> searchLinks(String query) async {
     try {

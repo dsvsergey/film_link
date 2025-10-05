@@ -6,13 +6,13 @@ import 'package:film_link/features/links/domain/entities/link_entity.dart';
 abstract class LinksRepository {
   /// Get all links for current user
   Future<Either<Failure, List<LinkEntity>>> getLinks();
-  
+
   /// Get archived links
   Future<Either<Failure, List<LinkEntity>>> getArchivedLinks();
-  
+
   /// Get link by id
-  Future<Either<Failure, LinkEntity>> getLinkById(String id);
-  
+  Future<Either<Failure, LinkEntity>> getLinkById(int id);
+
   /// Create new link
   Future<Either<Failure, LinkEntity>> createLink({
     required String url,
@@ -20,20 +20,20 @@ abstract class LinksRepository {
     String? description,
     List<String>? tags,
   });
-  
+
   /// Update link
   Future<Either<Failure, LinkEntity>> updateLink({
-    required String id,
+    required int id,
     String? url,
     String? title,
     String? description,
     List<String>? tags,
     bool? isArchived,
   });
-  
+
   /// Delete link
-  Future<Either<Failure, void>> deleteLink(String id);
-  
+  Future<Either<Failure, void>> deleteLink(int id);
+
   /// Search links
   Future<Either<Failure, List<LinkEntity>>> searchLinks(String query);
 }
