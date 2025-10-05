@@ -16,16 +16,18 @@ void main() async {
   
   try {
     // Initialize Supabase
+    // Always initialize Supabase with default or configured values
+    await Supabase.initialize(
+      url: SupabaseConfig.supabaseUrl,
+      anonKey: SupabaseConfig.supabaseAnonKey,
+    );
+    
     if (SupabaseConfig.isConfigured) {
-      await Supabase.initialize(
-        url: SupabaseConfig.supabaseUrl,
-        anonKey: SupabaseConfig.supabaseAnonKey,
-      );
-      logger.info('Supabase initialized successfully');
+      logger.info('Supabase initialized successfully with provided configuration');
     } else {
-      logger.warning('Supabase not configured. Please set SUPABASE_URL and SUPABASE_ANON_KEY');
+      logger.warning('Supabase initialized with default values. Please set SUPABASE_URL and SUPABASE_ANON_KEY');
       dev.log(
-        'WARNING: Supabase not configured. Please update lib/core/config/supabase_config.dart',
+        'WARNING: Supabase initialized with default values. Please update .env file or lib/core/config/supabase_config.dart',
         name: 'Main',
       );
     }

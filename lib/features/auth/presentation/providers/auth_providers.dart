@@ -12,7 +12,11 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 // Core providers
 final supabaseClientProvider = Provider<SupabaseClient>((ref) {
-  return Supabase.instance.client;
+  try {
+    return Supabase.instance.client;
+  } catch (e) {
+    throw Exception('Supabase is not initialized. Please make sure to call Supabase.initialize() first.');
+  }
 });
 
 final secureStorageProvider = Provider<FlutterSecureStorage>((ref) {
