@@ -10,7 +10,7 @@ abstract class DirectoryModel with _$DirectoryModel {
     required int id,
     @JsonKey(name: 'user_id') required int userId,
     required String name,
-    @JsonKey(name: 'created_at') required DateTime createdAt,
+    @JsonKey(name: 'created_at') required DateTime? createdAt,
     @JsonKey(name: 'updated_at') DateTime? updatedAt,
   }) = _DirectoryModel;
 

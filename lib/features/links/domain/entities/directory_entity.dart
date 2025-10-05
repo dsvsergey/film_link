@@ -8,7 +8,7 @@ abstract class DirectoryEntity with _$DirectoryEntity {
     required int id,
     required int userId,
     required String name,
-    required DateTime createdAt,
+    required DateTime? createdAt,
     DateTime? updatedAt,
   }) = _DirectoryEntity;
 }

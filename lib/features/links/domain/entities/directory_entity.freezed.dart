@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$DirectoryEntity {
 
- int get id; int get userId; String get name; DateTime get createdAt; DateTime? get updatedAt;
+ int get id; int get userId; String get name; DateTime? get createdAt; DateTime? get updatedAt;
 /// Create a copy of DirectoryEntity
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -45,7 +45,7 @@ abstract mixin class $DirectoryEntityCopyWith<$Res>  {
   factory $DirectoryEntityCopyWith(DirectoryEntity value, $Res Function(DirectoryEntity) _then) = _$DirectoryEntityCopyWithImpl;
 @useResult
 $Res call({
- int id, int userId, String name, DateTime createdAt, DateTime? updatedAt
+ int id, int userId, String name, DateTime? createdAt, DateTime? updatedAt
 });
 
 
@@ -62,13 +62,13 @@ class _$DirectoryEntityCopyWithImpl<$Res>
 
 /// Create a copy of DirectoryEntity
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? userId = null,Object? name = null,Object? createdAt = null,Object? updatedAt = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? userId = null,Object? name = null,Object? createdAt = freezed,Object? updatedAt = freezed,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,userId: null == userId ? _self.userId : userId // ignore: cast_nullable_to_non_nullable
 as int,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as String,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
-as DateTime,updatedAt: freezed == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
+as String,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
+as DateTime?,updatedAt: freezed == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
 as DateTime?,
   ));
 }
@@ -154,7 +154,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  int userId,  String name,  DateTime createdAt,  DateTime? updatedAt)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  int userId,  String name,  DateTime? createdAt,  DateTime? updatedAt)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _DirectoryEntity() when $default != null:
 return $default(_that.id,_that.userId,_that.name,_that.createdAt,_that.updatedAt);case _:
@@ -175,7 +175,7 @@ return $default(_that.id,_that.userId,_that.name,_that.createdAt,_that.updatedAt
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  int userId,  String name,  DateTime createdAt,  DateTime? updatedAt)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  int userId,  String name,  DateTime? createdAt,  DateTime? updatedAt)  $default,) {final _that = this;
 switch (_that) {
 case _DirectoryEntity():
 return $default(_that.id,_that.userId,_that.name,_that.createdAt,_that.updatedAt);case _:
@@ -195,7 +195,7 @@ return $default(_that.id,_that.userId,_that.name,_that.createdAt,_that.updatedAt
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  int userId,  String name,  DateTime createdAt,  DateTime? updatedAt)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  int userId,  String name,  DateTime? createdAt,  DateTime? updatedAt)?  $default,) {final _that = this;
 switch (_that) {
 case _DirectoryEntity() when $default != null:
 return $default(_that.id,_that.userId,_that.name,_that.createdAt,_that.updatedAt);case _:
@@ -216,7 +216,7 @@ class _DirectoryEntity implements DirectoryEntity {
 @override final  int id;
 @override final  int userId;
 @override final  String name;
-@override final  DateTime createdAt;
+@override final  DateTime? createdAt;
 @override final  DateTime? updatedAt;
 
 /// Create a copy of DirectoryEntity
@@ -249,7 +249,7 @@ abstract mixin class _$DirectoryEntityCopyWith<$Res> implements $DirectoryEntity
   factory _$DirectoryEntityCopyWith(_DirectoryEntity value, $Res Function(_DirectoryEntity) _then) = __$DirectoryEntityCopyWithImpl;
 @override @useResult
 $Res call({
- int id, int userId, String name, DateTime createdAt, DateTime? updatedAt
+ int id, int userId, String name, DateTime? createdAt, DateTime? updatedAt
 });
 
 
@@ -266,13 +266,13 @@ class __$DirectoryEntityCopyWithImpl<$Res>
 
 /// Create a copy of DirectoryEntity
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? userId = null,Object? name = null,Object? createdAt = null,Object? updatedAt = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? userId = null,Object? name = null,Object? createdAt = freezed,Object? updatedAt = freezed,}) {
   return _then(_DirectoryEntity(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,userId: null == userId ? _self.userId : userId // ignore: cast_nullable_to_non_nullable
 as int,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as String,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
-as DateTime,updatedAt: freezed == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
+as String,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
+as DateTime?,updatedAt: freezed == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
 as DateTime?,
   ));
 }
